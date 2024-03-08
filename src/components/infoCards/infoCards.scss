@@ -1,0 +1,34 @@
+.infoCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background: #FBFBFB;
+    padding: 32px;
+    border-radius: 5px;
+    &__icon {
+      width: 60px;
+      height: 60px;
+    }
+    &__container {
+      display: flex;
+      flex-direction: column;
+      padding-left: 24px;
+    }
+    &__data {
+      color: #282D30;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    &__title {
+      color: #74798C;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+}

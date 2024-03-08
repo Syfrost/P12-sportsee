@@ -1,0 +1,30 @@
+article.averagesession {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+article.averagesession figure {
+  position: relative;
+  background-color: #ff0000;
+  border-radius: 5px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+article.averagesession h2 {
+  position: absolute;
+  color: white;
+  top: 30px;
+  left: 34px;
+  font-size: 15px;
+  font-weight: 500;
+  width: 147px;
+  opacity: 0.6;
+}
+
+article.averagesession text {
+  word-spacing: 25px;
+}

@@ -1,0 +1,22 @@
+article.score {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+article.score figure {
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+article.score h2 {
+  position: absolute;
+  top: 24px;
+  left: 30px;
+  color: black;
+  font-size: 15px;
+  font-family: Roboto, sans-serif; //TODO: appliquer a tout les composant voir mettre gen
+  font-weight: 500;
+}

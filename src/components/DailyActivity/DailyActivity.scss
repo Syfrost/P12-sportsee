@@ -1,0 +1,47 @@
+article.activity {
+    position: relative;
+    grid-area: 3 / 1 / 4 / 4;
+    width: auto;
+    height: 400px;
+}
+
+@media all and (max-width: 900px) {
+    article.activity {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+}
+
+article.activity figure {
+    width: 100%;
+    height: 100%;
+}
+
+article.activity figure {
+    background-color: #fbfbfb;
+    border-radius: 5px;
+    margin: 0px;
+}
+
+article.activity h2 {
+    position: absolute;
+    color: #20253a;
+    top: 24px;
+    left: 32px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+article.activity .legend {
+    color: #74798c;
+    font-size: 14px;
+}
+
+figure {
+    width: 100%;
+    height: 100%;
+}
+
+.test {
+    width: 100%;
+    height: 100%;
+}
