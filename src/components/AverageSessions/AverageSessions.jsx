@@ -3,6 +3,15 @@ import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContain
 import PropTypes from 'prop-types';
 import './AverageSessions.scss';
 
+/**
+ * AverageSessions is a React component that displays the user's average session length over a week.
+ * It displays a line chart with the session length in minutes for each day of the week.
+ *
+ * @param {Object} props The properties passed to the AverageSessions component.
+ * @param {Array} props.userSessionAverage An array of objects representing the user's average session length for each day of the week. Each object contains the day and the session length in minutes.
+ * @returns {JSX.Element} A JSX element that represents the user's average session length over a week.
+ */
+
 function AverageSessions({ userSessionAverage }) {
     // La logique de transformation des données reste inchangée
     const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];

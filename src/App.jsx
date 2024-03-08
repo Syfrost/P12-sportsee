@@ -37,7 +37,7 @@ function App({ initialUserId }) {
             try {
                 const userInfo = await getUserInfo(userId);
                 if (userInfo && userInfo.data) {
-                    const score = userInfo.data.todayScore || userInfo.data.score;
+                    const score = userInfo.data.todayScore || userInfo.data.score; // Utilisez todayScore si disponible
                     setUserScore(score);
                     setUserKeyData(userInfo.data.keyData);
                     setFirstName(userInfo.data.userInfos.firstName);

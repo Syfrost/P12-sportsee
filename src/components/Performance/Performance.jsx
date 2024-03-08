@@ -3,6 +3,15 @@ import PropTypes from 'prop-types';
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from 'recharts';
 import './Performance.scss';
 
+/**
+ * Performance is a React component that displays the user's performance.
+ * It displays a radar chart with the intensity, speed, strength, endurance, energy, and cardio.
+ *
+ * @param {Object} props The properties passed to the Performance component.
+ * @param {Array} props.userPerformance An array of objects representing the user's performance. Each object contains the kind and value.
+ * @returns {JSX.Element} A JSX element that represents the user's performance.
+ */
+
 function Performance({ userPerformance }) {
     const kindName = ['Intensité', 'Vitesse', 'Force', 'Endurance', 'Energie', 'Cardio'];
     const transformedPerformance = userPerformance.map((data, index) => ({

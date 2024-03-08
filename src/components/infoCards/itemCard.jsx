@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 
 /**
- * ItemCard est un composant React qui affiche une carte d'information.
- * Chaque carte contient une icône, un nom, une unité de mesure et une valeur de données.
+ * ItemCard is a React component that displays an information card.
+ * Each card contains an icon, a name, a unit of measurement, and a data value.
  *
- * @param {Object} props Les propriétés passées au composant ItemCard.
- * @param {number} props.data La valeur des données à afficher sur la carte. Cette valeur est obtenue à partir de l'API.
- * @param {string} props.name Le nom à afficher sur la carte.
- * @param {string} props.icon L'URL de l'icône à afficher sur la carte.
- * @param {string} props.unit L'unité de mesure des données à afficher sur la carte.
- * @returns {JSX.Element} Un élément JSX qui représente une carte d'information.
+ * @param {Object} props The properties passed to the ItemCard component.
+ * @param {number} props.data The data value to be displayed on the card. This value is obtained from the API.
+ * @param {string} props.name The name to be displayed on the card.
+ * @param {string} props.icon The URL of the icon to be displayed on the card.
+ * @param {string} props.unit The unit of measurement of the data to be displayed on the card.
+ * @returns {JSX.Element} A JSX element that represents an information card.
  */
 function ItemCard({ data, name, icon, unit }) {
     console.log(data, name, icon, unit);

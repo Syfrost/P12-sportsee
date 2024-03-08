@@ -7,12 +7,12 @@ import ItemCard from '../infoCards/itemCard';
 import './infoCards.scss';
 
 /**
- * InfoCards est un composant React qui affiche une série de cartes d'information.
- * Chaque carte est un composant ItemCard qui affiche une icône, un nom, une unité de mesure et une valeur de données.
+ * InfoCards is a React component that displays a series of information cards.
+ * Each card is an ItemCard component that displays an icon, a name, a unit of measurement, and a data value.
  *
- * @param {Object} props Les propriétés passées au composant InfoCards.
- * @param {Object} props.userKeyData Les données utilisateur à afficher sur les cartes. Ces données sont obtenues à partir de l'API.
- * @returns {JSX.Element} Un élément JSX qui représente une série de cartes d'information.
+ * @param {Object} props The properties passed to the InfoCards component.
+ * @param {Object} props.userKeyData The user data to be displayed on the cards. This data is obtained from the API.
+ * @returns {JSX.Element} A JSX element that represents a series of information cards.
  */
 
 function InfoCards({ userKeyData }) {

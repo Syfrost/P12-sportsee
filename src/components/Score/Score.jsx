@@ -3,6 +3,15 @@ import PropTypes from 'prop-types';
 import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis } from 'recharts';
 import './Score.scss';
 
+/**
+ * Score is a React component that displays the user's score.
+ * It displays a radial bar chart with the score percentage.
+ *
+ * @param {Object} props The properties passed to the Score component.
+ * @param {number} props.score The score value to be displayed on the chart. This value is obtained from the API.
+ * @returns {JSX.Element} A JSX element that represents the user's score.
+ */
+
 function Score({ score }) {
     const scoreValue = [{ value: score * 100 }];
     const newScore = score * 100;

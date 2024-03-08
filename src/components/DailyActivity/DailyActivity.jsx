@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import './DailyActivity.scss';
 
 /**
- * DailyActivity est un composant React qui affiche l'activité quotidienne de l'utilisateur.
- * Il affiche un graphique à barres avec le poids en kilogrammes et les calories brûlées chaque jour.
+ * DailyActivity is a React component that displays the user's daily activity.
+ * It displays a bar chart with the weight in kilograms and the calories burned each day.
  *
- * @param {Object} props Les propriétés passées au composant DailyActivity.
- * @param {Array} props.userActivity Un tableau d'objets représentant l'activité de l'utilisateur chaque jour. Chaque objet contient le jour, le poids en kilogrammes et les calories brûlées.
- * @returns {JSX.Element} Un élément JSX qui représente l'activité quotidienne de l'utilisateur.
+ * @param {Object} props The properties passed to the DailyActivity component.
+ * @param {Array} props.userActivity An array of objects representing the user's activity each day. Each object contains the day, the weight in kilograms, and the calories burned.
+ * @returns {JSX.Element} A JSX element that represents the user's daily activity.
  */
 
 function DailyActivity({ userActivity }) {

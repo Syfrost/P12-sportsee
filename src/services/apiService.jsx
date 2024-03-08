@@ -1,6 +1,15 @@
+/**
+ * Base URL for the API
+ * @type {string}
+ */
 const API_BASE_URL = 'http://localhost:3000';
 
-// Récupère les informations de l'utilisateur
+/**
+ * Fetches the user's information from the API
+ * @param {number} userId - The ID of the user
+ * @returns {Promise<object>} The user's information
+ * @throws Will throw an error if the network response is not ok
+ */
 export const getUserInfo = async (userId) => {
     try {
         const response = await fetch(`${API_BASE_URL}/user/${userId}`);
@@ -13,7 +22,12 @@ export const getUserInfo = async (userId) => {
     }
 };
 
-// Récupère l'activité quotidienne de l'utilisateur
+/**
+ * Fetches the user's daily activity from the API
+ * @param {number} userId - The ID of the user
+ * @returns {Promise<object>} The user's daily activity
+ * @throws Will throw an error if the network response is not ok
+ */
 export const getUserActivity = async (userId) => {
     try {
         const response = await fetch(`${API_BASE_URL}/user/${userId}/activity`);
@@ -26,7 +40,12 @@ export const getUserActivity = async (userId) => {
     }
 };
 
-// Récupère les sessions moyennes de l'utilisateur
+/**
+ * Fetches the user's average sessions from the API
+ * @param {number} userId - The ID of the user
+ * @returns {Promise<object>} The user's average sessions
+ * @throws Will throw an error if the network response is not ok
+ */
 export const getUserAverageSessions = async (userId) => {
     try {
         const response = await fetch(`${API_BASE_URL}/user/${userId}/average-sessions`);
@@ -39,7 +58,12 @@ export const getUserAverageSessions = async (userId) => {
     }
 };
 
-// Récupère les performances de l'utilisateur
+/**
+ * Fetches the user's performance from the API
+ * @param {number} userId - The ID of the user
+ * @returns {Promise<object>} The user's performance
+ * @throws Will throw an error if the network response is not ok
+ */
 export const getUserPerformance = async (userId) => {
     try {
         const response = await fetch(`${API_BASE_URL}/user/${userId}/performance`);
