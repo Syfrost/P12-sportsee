@@ -19,16 +19,27 @@ function AverageSessions({ userSessionAverage }) {
         ...session,
         day: dayLabels[session.day - 1]
     }));
-    console.log(transformedData); //debug console.log to check the transformed data
 
     const [dotPosition, setDotPosition] = useState({ left: 0, top: 0, visible: false });
 
     const handleMouseMove = (e) => {
-        if (e.activePayload) {
+        const dotElement = document.querySelector('.recharts-dot');
+        if (e.activePayload && dotElement) {
             const coords = e.activeCoordinate;
             setDotPosition({ left: coords.x, top: coords.y, visible: true });
         } else {
             setDotPosition({ ...dotPosition, visible: false });
+        }
+    };
+    const handleMouseLeave = () => {
+        setDotPosition({ ...dotPosition, visible: false });
+        const dotElement = document.querySelector('.recharts-dot');
+        const tooltipElement = document.querySelector('.recharts-tooltip-item-unit');
+        if (dotElement) {
+            dotElement.style.display = 'none';
+        }
+        if (tooltipElement) {
+            tooltipElement.style.display = 'none';
         }
     };
 
@@ -50,6 +61,7 @@ function AverageSessions({ userSessionAverage }) {
                     <LineChart
                         data={transformedData}
                         onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
                         margin={{
                             top: 0,
                             right: 0,
