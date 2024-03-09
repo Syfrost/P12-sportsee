@@ -47,13 +47,14 @@ function DailyActivity({ userActivity }) {
                         <Tooltip
                             itemStyle={{
                                 color: 'white',
-                                fontSize: 10,
+                                fontSize: 11,
                                 fontWeight: 500,
                             }}
                             formatter={(value, name, unit) => [value, unit]}
                             labelStyle={{ display: 'none' }}
                             contentStyle={{
                                 backgroundColor: '#E60000',
+                                borderStyle: 'none',
                             }}
                         />
 

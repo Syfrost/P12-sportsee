@@ -87,7 +87,7 @@ function AverageSessions({ userSessionAverage }) {
                         <Tooltip
                             itemStyle={{
                                 color: 'black',
-                                fontSize: 8,
+                                fontSize: 11,
                                 fontWeight: 500,
                             }}
                             formatter={(value, name, unit) => [value, unit]}
