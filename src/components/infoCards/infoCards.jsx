@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { getUserInfo } from '../../services/apiService';
 import PropTypes from 'prop-types';
 import caloriesicon from '../../assets/calories-icon.svg';
 import carbsicon from '../../assets/carbs-icon.svg';
@@ -15,7 +17,33 @@ import './infoCards.scss';
  * @returns {JSX.Element} A JSX element that represents a series of information cards.
  */
 
-function InfoCards({ userKeyData }) {
+function InfoCards({ initialUserId }) {
+    const [userKeyData, setUserKeyData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const userInfo = await getUserInfo(initialUserId);
+                console.log('Data from getUserInfo:', userInfo); // Ajout d'un log de débogage
+
+                if (userInfo && userInfo.size > 0) {
+                    const keyData = userInfo.get('keyData');
+                    if (keyData) {
+                        setUserKeyData(keyData);
+                    } else {
+                        console.log('Données clés de l\'utilisateur non trouvées');
+                    }
+                } else {
+                    console.log('Données de l\'utilisateur non trouvées');
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des informations de l\'utilisateur:', error);
+            }
+        };
+
+        fetchData();
+    }, [initialUserId]);
+
     return (
         <section className={"infoCards"}>
             {userKeyData && (
@@ -35,7 +63,7 @@ function InfoCards({ userKeyData }) {
 }
 
 InfoCards.propTypes = {
-    userKeyData: PropTypes.object.isRequired,
+    initialUserId: PropTypes.number.isRequired,
 };
 
 export default InfoCards;

@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 
-// Fonction pour extraire l'ID de l'URL
-function getUserIdFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('id');
-    return userId ? parseInt(userId, 10) : 18; // Utilise 18 comme valeur par défaut
-}
-
 ReactDOM.createRoot(document.getElementById('root')).render (
     <React.StrictMode>
-        <App initialUserId={getUserIdFromURL()} />
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to="/18" />} /> {/*Ajout d'une redirection temporaire sur id 18 par default*/}
+                <Route path="/:userId" element={<App />} />
+            </Routes>
+        </Router>
     </React.StrictMode>
 );

@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { getUserPerformance } from '../../services/apiService';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from 'recharts';
@@ -12,7 +14,34 @@ import './Performance.scss';
  * @returns {JSX.Element} A JSX element that represents the user's performance.
  */
 
-function Performance({ userPerformance }) {
+function Performance({ initialUserId }) {
+    const [userId, setUserId] = useState(initialUserId);
+    const [userPerformance, setUserPerformance] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const performanceData = await getUserPerformance(userId);
+                console.log('Data from getUserPerformance:', performanceData); // Ajout d'un log de débogage
+
+                if (performanceData && performanceData.size > 0) {
+                    const kindValue = performanceData.get('kindValue');
+                    if (kindValue) {
+                        setUserPerformance(kindValue);
+                    } else {
+                        console.log('Données de performance non trouvées');
+                    }
+                } else {
+                    console.log('Données de performance non trouvées');
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des performances de l\'utilisateur:', error);
+            }
+        };
+
+        fetchData();
+    }, [userId]);
+
     const kindName = ['Intensité', 'Vitesse', 'Force', 'Endurance', 'Energie', 'Cardio'];
     const transformedPerformance = userPerformance.map((data, index) => ({
         ...data,
@@ -49,7 +78,7 @@ function Performance({ userPerformance }) {
 }
 
 Performance.propTypes = {
-    userPerformance: PropTypes.array.isRequired
+    initialUserId: PropTypes.number.isRequired,
 };
 
 export default Performance;

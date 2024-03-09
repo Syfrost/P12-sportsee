@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getUserAverageSessions } from '../../services/apiService';
 import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts';
 import PropTypes from 'prop-types';
 import './AverageSessions.scss';
@@ -12,7 +13,34 @@ import './AverageSessions.scss';
  * @returns {JSX.Element} A JSX element that represents the user's average session length over a week.
  */
 
-function AverageSessions({ userSessionAverage }) {
+function AverageSessions({ initialUserId }) {
+    const [userId, setUserId] = useState(initialUserId);
+    const [userSessionAverage, setUserSessionAverage] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const averageSessionsData = await getUserAverageSessions(userId);
+                console.log('Data from getUserAverageSessions:', averageSessionsData); // Ajout d'un log de débogage
+
+                if (averageSessionsData && averageSessionsData.size > 0) {
+                    const sessions = averageSessionsData.get('averageSessions');
+                    if (sessions) {
+                        setUserSessionAverage(sessions);
+                    } else {
+                        console.log('Données de sessions moyennes non trouvées');
+                    }
+                } else {
+                    console.log('Données de sessions moyennes non trouvées');
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des sessions moyennes:', error);
+            }
+        };
+
+        fetchData();
+    }, [userId]);
+
     // La logique de transformation des données reste inchangée
     const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
     const transformedData = userSessionAverage.map(session => ({
@@ -112,10 +140,7 @@ function AverageSessions({ userSessionAverage }) {
 }
 
 AverageSessions.propTypes = {
-    userSessionAverage: PropTypes.arrayOf(PropTypes.shape({
-        day: PropTypes.number.isRequired,
-        sessionLength: PropTypes.number.isRequired
-    })).isRequired
+    initialUserId: PropTypes.number.isRequired,
 };
 
 export default AverageSessions;

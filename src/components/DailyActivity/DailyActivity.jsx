@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { getUserActivity } from '../../services/apiService';
 import { Legend, CartesianGrid, XAxis, YAxis, Tooltip, Bar, BarChart, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
 import './DailyActivity.scss';
@@ -11,7 +13,33 @@ import './DailyActivity.scss';
  * @returns {JSX.Element} A JSX element that represents the user's daily activity.
  */
 
-function DailyActivity({ userActivity }) {
+function DailyActivity({ initialUserId }) {
+    const [userId, setUserId] = useState(initialUserId);
+    const [userActivity, setUserActivity] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const activityData = await getUserActivity(userId);
+                console.log('Data from getUserActivity:', activityData); // Ajout d'un log de débogage
+
+                if (activityData && activityData.size > 0) {
+                    const sessions = activityData.get('sessions');
+                    if (sessions) {
+                        setUserActivity(sessions);
+                    } else {
+                        console.log('Données d\'activité non trouvées');
+                    }
+                } else {
+                    console.log('Données d\'activité non trouvées');
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données d\'activité:', error);
+            }
+        };
+
+        fetchData();
+    }, [userId]);
     // Modifie day afin d'avoir un numéro de jour à chaque session
     const numberOfDay = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     const processedActivity = userActivity.map((session, index) => ({
@@ -69,13 +97,6 @@ function DailyActivity({ userActivity }) {
 }
 
 DailyActivity.propTypes = {
-    userActivity: PropTypes.arrayOf(
-        PropTypes.shape({
-            day: PropTypes.string.isRequired,
-            kilogram: PropTypes.number.isRequired,
-            calories: PropTypes.number.isRequired,
-        })
-    ).isRequired
+    initialUserId: PropTypes.number.isRequired,
 };
-
 export default DailyActivity;
