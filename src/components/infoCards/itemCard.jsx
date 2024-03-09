@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element} A JSX element that represents an information card.
  */
 function ItemCard({ data, name, icon, unit }) {
-    console.log(data, name, icon, unit);
+    //console.log(data, name, icon, unit); //debug line to check the values of the props
     return (
         <div className={"card"}>
             <img className={"card__icon"} src={icon} alt={`${name} icon`} />
