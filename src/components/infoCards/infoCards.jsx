@@ -31,7 +31,6 @@ function InfoCards({ initialUserId }) {
                     const keyData = userInfo.get('keyData');
                     if (keyData) {
                         setUserKeyData(keyData);
-                        setError(true);
                     } else {
                         console.log('Données clés de l\'utilisateur non trouvées');
                         setError(true);
