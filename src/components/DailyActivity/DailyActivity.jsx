@@ -9,13 +9,14 @@ import './DailyActivity.scss';
  * It displays a bar chart with the weight in kilograms and the calories burned each day.
  *
  * @param {Object} props The properties passed to the DailyActivity component.
- * @param {Array} props.userActivity An array of objects representing the user's activity each day. Each object contains the day, the weight in kilograms, and the calories burned.
+ * @param {number} props.initialUserId The initial ID of the user.
  * @returns {JSX.Element} A JSX element that represents the user's daily activity.
  */
 
 function DailyActivity({ initialUserId }) {
     const [userId, setUserId] = useState(initialUserId);
     const [userActivity, setUserActivity] = useState([]);
+    const [error, setError] = useState(false); // Ajout d'un état pour gérer l'erreur
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,12 +30,15 @@ function DailyActivity({ initialUserId }) {
                         setUserActivity(sessions);
                     } else {
                         console.log('Données d\'activité non trouvées');
+                        setError(true);
                     }
                 } else {
                     console.log('Données d\'activité non trouvées');
+                    setError(true);
                 }
             } catch (error) {
                 console.error('Erreur lors de la récupération des données d\'activité:', error);
+                setError(true);
             }
         };
 

@@ -9,13 +9,14 @@ import './AverageSessions.scss';
  * It displays a line chart with the session length in minutes for each day of the week.
  *
  * @param {Object} props The properties passed to the AverageSessions component.
- * @param {Array} props.userSessionAverage An array of objects representing the user's average session length for each day of the week. Each object contains the day and the session length in minutes.
+ * @param {number} props.initialUserId The initial ID of the user.
  * @returns {JSX.Element} A JSX element that represents the user's average session length over a week.
  */
 
 function AverageSessions({ initialUserId }) {
     const [userId, setUserId] = useState(initialUserId);
     const [userSessionAverage, setUserSessionAverage] = useState([]);
+    const [error, setError] = useState(false); // Ajout d'un état pour gérer l'erreur
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,12 +30,15 @@ function AverageSessions({ initialUserId }) {
                         setUserSessionAverage(sessions);
                     } else {
                         console.log('Données de sessions moyennes non trouvées');
+                        setError(true);
                     }
                 } else {
                     console.log('Données de sessions moyennes non trouvées');
+                    setError(true);
                 }
             } catch (error) {
                 console.error('Erreur lors de la récupération des sessions moyennes:', error);
+                setError(true);
             }
         };
 
@@ -85,6 +89,11 @@ function AverageSessions({ initialUserId }) {
                         display: dotPosition.visible ? 'block' : 'none'
                     }}
                 />
+                {error ? ( // Conditionnellement afficher le message d'erreur si l'état d'erreur est vrai
+                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', zIndex: 1, textAlign: 'center', borderRadius: '5px', }}>
+                        Erreur de chargement des données
+                    </div>
+                ) : (
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={transformedData}
@@ -133,6 +142,7 @@ function AverageSessions({ initialUserId }) {
                         />
                     </LineChart>
                 </ResponsiveContainer>
+                    )}
             </figure>
             <h2>Durée moyenne des sessions</h2>
         </article>
